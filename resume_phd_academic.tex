@@ -1,0 +1,106 @@
+%arara: xelatex
+
+\documentclass{resume}
+\usepackage{ctex}
+\usepackage{tabularx}
+
+\begin{document}
+\pagenumbering{gobble}
+\small
+
+\name{王胤雅}
+
+\basicInfo{
+  \email{yinyawang25@m.fudan.edu.cn} \textperiodcentered\
+  \phone{(+86) 15907464032} \textperiodcentered\
+  \github[github.com/evawyy]{http://github.com/evawyy}
+}
+
+\section{\faFemale\ 个人总结}
+复旦大学上海数学与交叉学科研究院2025级直博生，研究方向为数值优化、优化求解器与GPU加速优化。
+博士阶段工作围绕优化求解器的算法机制理解、统一实验评测与工程实现展开，已完成cuOpt启发式源码分析、
+LPfeas多求解器Benchmark与日志审计、PDHCG CUDA兼容性PR；当前推进QCQP solver测试流程与GRIMIP自动调参分析。
+
+\section{\faGraduationCap\ 教育经历}
+\datedsubsection{\textbf{复旦大学}，上海，中国}{2025 -- 至今}
+直博，数学，上海数学与交叉学科研究院，预计2030年6月毕业；博士阶段资格考试已通过。
+
+\datedsubsection{\textbf{北京师范大学}，北京，中国}{2019 -- 2025}
+本科，数学与应用数学，2025年6月毕业；期间获得5次学业奖学金。
+
+\section{\faBook\ 学业成绩}
+\begin{itemize}
+  \item 博士阶段已修读课程31学分，当前加权绩点约3.59/4.0；资格考试通过。
+  \item 学位核心课：数值线性代数（A），高等数理统计（A），数值分析与科学计算（A-），变分迭代法（A-）。
+  \item 方向相关课程：线性方程组的迭代解法（A），CUDA编程与并行算法（B-），现代概率论基础I（C+）。
+  \item 其他课程：专业外语（A），研究生学术英语翻译（A），英语学术论文写作（A-），中国马克思主义与当代（A-），新时代中国特色社会主义理论与实践（A-）。
+  \item 本科GPA 3.6/4.0，排名前20\%（29/140）；修读20+门纯数学课程，包括泛函分析（95分）、马氏过程选讲（93分）、实变函数（93分）等；并行计算（95分）、数学建模（91分）。
+\end{itemize}
+
+\section{\faLightbulbO\ 科研经历}
+\datedsubsection{cuOpt启发式算法分析与GPU求解行为研究}{2025 -- 2026}
+\begin{itemize}
+  \item \textbf{个人贡献：}阅读cuOpt源码，分析Feasibility Pump、Feasibility Jump、Local-MIP与CPUFJ/GPUFJ实现关系；完成CPUFJ/GPUFJ日志分类、实例结构统计与阶段性机制解释。
+  \item \textbf{阶段结果：}整理技术材料供COPT团队参考；在样本中观察到cuOpt前1秒更早找到可行解的75个实例，并区分CPUFJ-only、GPUFJ-only、共同找到等类型。
+  \item \textbf{贡献边界：}刘天浩师兄主要负责论文与文献调研；团队后续集成并测试Local-MIP相关方法，整体benchmark改善有限，部分实际场景有明显收益。
+\end{itemize}
+
+\datedsubsection{LPfeas多求解器Benchmark与日志审计}{2025 -- 2026}
+\begin{itemize}
+  \item \textbf{个人贡献：}整理Mittelmann LPfeas公开49题，部署COPT、MOSEK、XOPT、HiGHS、OR-Tools PDLP，设计配置并完成主测试245项。
+  \item \textbf{阶段结果：}本机主批次最终Optimal数量为COPT 49/49，MOSEK 47/49，XOPT 47/49，HiGHS 39/49，PDLP 41/49；对本机与公开榜单日志逐题核查。
+  \item \textbf{严谨口径：}发现PDLP部分结果存在CLI verification failed，HiGHS公开网页数值、公开日志最终状态、HiPO计时与迭代路径之间存在不一致，因此分口径报告，不夸大为严格同硬件同精度对照。
+\end{itemize}
+
+\datedsubsection{PDHCG CUDA 13.3兼容性修复}{2026}
+\begin{itemize}
+  \item \textbf{个人贡献：}定位PDHCG项目中cuSPARSE SpMV接口版本兼容问题，添加CUDA/cuSPARSE版本判断，适配CUDA 13.3所需新接口并保留旧版本支持。
+  \item \textbf{工程结果：}在CUDA 13.3.73与13.2.78环境下完成编译验证；PR \#10（CUDA 13.3 compatibility）已合并。
+  \item \textbf{贡献边界：}该工作为工程兼容性贡献，不声称开发PDHCG算法或提高求解速度。
+\end{itemize}
+
+\datedsubsection{QCQP solver性能测试流程}{2026 -- 至今}
+\begin{itemize}
+  \item 在已有LPfeas public49多求解器测试基础上，继续沉淀性能测试流程、实验配置与日志审计方法。
+  \item 当前利用49个公开LP问题开展相关CPU性能评测和实验方法验证，为后续QCQP solver测试提供参考。
+  \item \textbf{贡献边界：}public49是LP问题集；本人未参与QCQP solver核心代码编写，目前不称为QCQP全面性能验证。
+\end{itemize}
+
+\datedsubsection{COPT AI自动调参（GRIMIP）}{2026 -- 至今}
+\begin{itemize}
+  \item 参与GRIMIP测试，整理并分析南网材料，向上游团队反馈实验结果和现有问题。
+  \item 当前关注实例分层、根节点求解行为、进入B\&B后的性能收益来源，以及多实例调参策略。
+  \item \textbf{贡献边界：}团队此前在部分需要进入B\&B的难实例上观察到明显收益；这些结果不是本人直接取得，本人工作仍处于测试、分析和问题形式化阶段。
+\end{itemize}
+
+\section{\faFlask\ 本科科研经历}
+\datedsubsection{独立研究}{2020.01 -- 2021.03}
+Research on Litter Decomposition Based on the Olson Model 收录在5th International Conference on Economic Management and Green Development会议期刊上。
+
+\datedsubsection{本科科研项目}{2022.06 -- 2023.05}
+在何辉教授指导下，参与随机分支游走计数测度收敛速度估计的研究。
+
+\datedsubsection{北京市创新项目}{2023.06 -- 2024.05}
+在陈昕昕教授指导下，参与分支布朗运动水平集大偏差问题的研究。
+
+\section{\faCogs\ 技能与学术活动}
+\begin{itemize}
+  \item 编程与工具：C、Python、Lua、CUDA基础，熟悉\LaTeX 排版系统与git代码管理。
+  \item 求解器与实验：优化求解器日志分析、Benchmark配置、结果审计、GPU求解行为分析。
+  \item 学术活动：参加北京大学优化相关学术报告、ICCM 2025；曾参与专硕相关秘书工作，协助老师整理材料。
+  \item 语言能力：中文（母语），英语（流利）；托福93分。
+\end{itemize}
+
+\section{\faBell\ 校内实践与获奖情况}
+\datedsubsection{校内实践}{2021 -- 2022}
+\begin{itemize}
+  \item OM学社成员，积极参与数学竞赛相关活动；数科心理部成员，组织策划心理健康活动。
+  \item 完成北京师范大学卓越训练营项目；完成校内志愿者培训，成为雪绒花使者。
+\end{itemize}
+
+\datedline{\nth{1} 获得新生奖学金}{2019年}
+\datedline{\nth{2} 获得京师二等奖学金}{2022年}
+\datedline{\nth{3} 获得全国大学生数学竞赛三等奖}{2023年}
+\datedline{\nth{4} 获得竞赛二等奖学金}{2023年}
+
+\end{document}
